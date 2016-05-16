@@ -12,6 +12,9 @@
     "asi": true,
     "esversion": 6
   },
+  "babel":{
+    "presets": ["es2015", "stage-1"]
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {

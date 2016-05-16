@@ -1,3 +1,7 @@
+var fs = require('fs')
+
+var babelrc = JSON.parse(fs.readFileSync('./package.json').toString()).babel
+
 module.exports = function(grunt) {
   grunt.initConfig({
     jshint: {
@@ -30,7 +34,7 @@ module.exports = function(grunt) {
         dest: 'dist/library.js',
         options: {
           external: [],
-          transform: [['babelify', {presets: ['es2015', 'stage-1']}]],
+          transform: [['babelify', babelrc]],
           watch: true
         }
       },
@@ -38,7 +42,7 @@ module.exports = function(grunt) {
         src: ['test/**/*.js'],
         dest: 'test-dist/test.js',
         options: {
-          transform: [['babelify', {presets: ['es2015', 'stage-1']}]],
+          transform: [['babelify', babelrc]],
           watch: true
         }
       }
