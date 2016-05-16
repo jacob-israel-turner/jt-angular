@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "grunt testem:run:unit",
+    "test": "grunt test",
     "watch": "grunt",
     "start": "npm run watch"
   },
   "jshintConfig": {
-    "asi": true
+    "asi": true,
+    "esversion": 6
   },
   "author": "",
   "license": "ISC",

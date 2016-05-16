@@ -33,6 +33,13 @@ module.exports = function(grunt) {
           transform: [['babelify', {presets: ['es2015', 'stage-1']}]],
           watch: true
         }
+      },
+      test: {
+        src: ['test/**/*.js'],
+        dest: 'test-dist/test.js',
+        options: {
+          transform: [['babelify', {presets: ['es2015', 'stage-1']}]]
+        }
       }
     },
     concat: {
@@ -50,13 +57,9 @@ module.exports = function(grunt) {
           framework: 'jasmine2',
           launch_in_dev: ['PhantomJS'],
           before_tests: 'grunt jshint',
-          serve_files: [
-            'node_modules/lodash/lodash.js',
-            'node_modules/jquery/jquery.js',
-            'src/**/*.js',
-            'test/**/*.js'
-          ],
-          watch_files: ['src/**/*.js','test/**/*.js'],
+          on_exit: 'rm -r test-dist',
+          serve_files: ['test-dist/test.js'],
+          watch_files: ['test-dist/test.js'],
         }
       }
     }
@@ -66,5 +69,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.registerTask('test', ['browserify:test', 'testem:run:unit']);
   grunt.registerTask('default', ['browserify:vendor', 'browserify:client', 'concat', 'watch:concat']);
 };
