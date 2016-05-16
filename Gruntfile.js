@@ -38,7 +38,8 @@ module.exports = function(grunt) {
         src: ['test/**/*.js'],
         dest: 'test-dist/test.js',
         options: {
-          transform: [['babelify', {presets: ['es2015', 'stage-1']}]]
+          transform: [['babelify', {presets: ['es2015', 'stage-1']}]],
+          watch: true
         }
       }
     },
