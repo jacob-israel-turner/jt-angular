@@ -36,11 +36,11 @@ module.exports = function(grunt) {
       }
     },
     concat: {
-      'dist/jt-angular.js': ['dist/vendor.js', 'dist/library.js']
+      'dist/jt-angular.js': ['dist/library.js', 'dist/vendor.js']
     },
     watch: {
       concat: {
-        files: ['dist/library.js'],
+        files: ['dist/library.js', 'dist/vendor.js'],
         tasks: ['concat']
       }
     },
@@ -66,5 +66,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-browserify');
-  grunt.registerTask('default', ['browserify:vendor', 'browserify:client', 'watch:concat']);
+  grunt.registerTask('default', ['browserify:vendor', 'browserify:client', 'concat', 'watch:concat']);
 };
